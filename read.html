@@ -9,6 +9,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src =read.js></script>
   <title>Document</title>
+  <script>
+    $(document).ready(async function(){
+      const no = getPageno();
+      if(no===null){
+        alert('올바르지 않은 접근 경로입니다');
+        location.href ="index.html";
+      }
+      const result = await fetch(no);
+      if(result===null) {
+        alert('서버가 응답하지 않습니다');
+        location.href = "index.html";
+      }
+      //result는 한 사람의 주소 :no, name, address, tel, photo
+      console.log(result);
+      printContact(result);
+    })
+  </script>
 </head>
 <body>
   <div id ="page">
